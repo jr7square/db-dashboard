@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  name: string;
+  message: string;
+
+  onClick() {
+     this.message = 'Hello' + this.name;
+ }
 }

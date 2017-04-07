@@ -1,0 +1,11 @@
+<p-panel header="Log In">
+   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <label for="username">User Name</label>
+      <input id="username" type="text" [(ngModel)]="user.username" name="username" pInputText>
+      <label for="password"> Password </label>
+      <input id="password" type="password" [(ngModel)]="user.password" name="password" pInputText>
+      <button type="submit" pButton label="Log In" icon="fa fa-check"></button>
+   </form>
+</p-panel>
+
+{{diagnostic}}
