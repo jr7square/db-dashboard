@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from 'app/auth.service';
 import { User } from '../user';
 
 @Component({
@@ -10,7 +12,7 @@ export class LogInInputComponent implements OnInit {
 
    user: User;
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
      this.user = new User();
   }
 
@@ -19,7 +21,7 @@ export class LogInInputComponent implements OnInit {
   }
 
   onSubmit() {
-     alert(JSON.stringify(this.user))
+    this.authService.login(this.user).subscribe(val => this.router.navigate(['/dashboard']));
   }
 
   //get diagnostic() { return JSON.stringify(this.user)}
