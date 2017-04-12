@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { InputTextModule, ButtonModule } from 'primeng/primeng';
 import { LogInModule } from 'app/log-in/log-in.module';
 
+import { UserService } from 'app/services/user.service';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -23,7 +25,7 @@ import { AppComponent } from './app.component';
     LogInModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
-<p-panel header="Log In">
+<p-panel header="db Project Log In">
    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <label for="username">User Name</label>
-      <input id="username" type="text" [(ngModel)]="user.username" name="username" pInputText>
+      <label for="email">Email</label>
+      <input id="email" type="text" [(ngModel)]="userEmail" name="email" pInputText>
       <label for="password"> Password </label>
-      <input id="password" type="password" [(ngModel)]="user.password" name="password" pInputText>
+      <input id="password" type="password" [(ngModel)]="userPassword" name="password" pInputText>
       <button type="submit" pButton label="Log In" icon="fa fa-check"></button>
    </form>
 </p-panel>

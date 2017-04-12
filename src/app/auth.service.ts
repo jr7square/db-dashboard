@@ -2,22 +2,32 @@ import { Injectable } from '@angular/core';
 import { User } from 'app/log-in/user';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
+import { Headers, Http } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean = false;
+  private isLoggedIn: boolean = false;
+  private redirectUrl: string;
+  private url: string;
+  private headers: Headers;
 
-  redirectUrl: string;
+  constructor(private http: Http) {
+    this.url = 'http://localhost:3000/users/login';
+    this.headers = new Headers({'Content-Type': 'application/json'});
+  }
 
-  constructor() { }
-
-  login(user): Observable<boolean> {
-    return Observable.of(true).delay(1000).do(val => {
-      if(user.username === 'admin' && user.password === 'password')
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(this.url, {email: email, password: password}, this.headers)
+    .map(response => {
+      let jResponse = response.json();
+      if(jResponse.success){
         this.isLoggedIn = true;
+      }
+      if(jResponse.wrongPassword){
+        this.isLoggedIn = false;
+      }
+      return jResponse;
     });
   }
 
@@ -25,4 +35,15 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
+  getIsLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  getRedirectUrl(): string {
+    return this.redirectUrl;
+  }
+
+  setRedirectUrl(url: string): void {
+    this.redirectUrl = url;
+  }
 }
