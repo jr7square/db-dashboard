@@ -1,22 +1,40 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ToolbarModule, ButtonModule, MenuModule, MenuItem } from 'primeng/primeng';
+import { ToolbarModule,
+         ButtonModule,
+         MenuModule,
+         MenuItem,
+         DropdownModule } from 'primeng/primeng';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarComponent } from './menubar/menubar.component';
+import { SearchComponent } from './search/search.component';
+import { TripsStatusComponent } from './trips-status/trips-status.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const dashboardRoutes: Routes = [
-  {path: '', component: DashboardComponent }
+  {path: '', component: DashboardComponent, children: [
+    {path: 'search', component: SearchComponent },
+    {path: 'trips', component: TripsStatusComponent },
+    {path: 'profile', component: ProfileComponent }
+  ] }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
+    FormsModule,
     ToolbarModule,
     ButtonModule,
     MenuModule,
+    DropdownModule,
     RouterModule.forChild(dashboardRoutes)
   ],
-  declarations: [DashboardComponent, MenubarComponent]
+  declarations: [ DashboardComponent,
+                  MenubarComponent,
+                  SearchComponent,
+                  TripsStatusComponent,
+                  ProfileComponent
+                ],
+  exports: [RouterModule]
 })
 export class DashboardModule { }

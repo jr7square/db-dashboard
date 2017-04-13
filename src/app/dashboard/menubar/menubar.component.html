@@ -1,30 +1,16 @@
-<!-- <p-toolbar>
-  <div class="ui-toolbar-group-left">
-    <button pButton type="button" label="New" icon="fa-plus"></button>
-    <button pButton type="button" label="Open" icon="fa-folder-open"></button>
-
-    <i class="fa fa-bars"></i>
-  </div>
-
-  <div class="ui-toolbar-group-right">
-    <button pButton type="button" icon="fa-search"></button>
-    <i class="fa fa-bars"></i>
-    <button pButton type="button" icon="fa-refresh"></button>
-    <button pButton type="button" icon="fa-trash"></button>
-  </div>
-</p-toolbar> -->
 <div>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/dashboard">Touring 360</a>
+        <a class="navbar-brand" routerLink="/dashboard">Touring 360</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/dashboard">Search</a></li>
-        <li><a routerLink="/dashboard">Trip Status</a></li>
+        <li class="active"><a routerLink="/dashboard/search">Search</a></li>
+        <li><a routerLink="/dashboard/trips">Trip Status</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li><a routerLink="/dashboard"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+          <li><a routerLink="/dashboard/profile"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+          <li><a routerLink="/dashboard" (click)="logOut()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a><li>
       </ul>
     </div>
   </nav>

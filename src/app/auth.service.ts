@@ -20,6 +20,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(this.url, {email: email, password: password}, this.headers)
     .map(response => {
+      console.log(response.json());
       let jResponse = response.json();
       if(jResponse.success){
         this.isLoggedIn = true;

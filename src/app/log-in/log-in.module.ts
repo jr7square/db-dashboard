@@ -20,7 +20,8 @@ const logInRoutes: Routes = [
   ],
   declarations: [LogInInputComponent],
   exports: [
-     LogInInputComponent
+     LogInInputComponent,
+     RouterModule
  ]
 })
 export class LogInModule { }
