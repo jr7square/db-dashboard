@@ -1,0 +1,19 @@
+.login-container {
+  position: absolute;
+  top: 35%;
+  left: 38%;
+  width: 400px;
+}
+
+.form-labels {
+  margin: 10px;
+}
+
+.form-inputs {
+  margin: 10px;
+
+}
+
+.sign-in-btn {
+  margin: 10px
+}

@@ -24,6 +24,15 @@ export class TripsService {
       });
   }
 
+  bookTrip(trip: Trip): Observable<any> {
+    let bookUrl = `${this.url}/bookTrip`;
+    return this.http.post(bookUrl, trip.encode(), this.headers)
+      .map(response => {
+        return response.json();
+      });
+  }
 
+
+  
 
 }

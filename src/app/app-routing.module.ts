@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import { AuthService } from 'app/auth.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'login', loadChildren: 'app/log-in/log-in.module#LogInModule'},
-  {path: 'dashboard', canActivate: [AuthGuard], loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}
+  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}
 ];
 
 @NgModule({
@@ -16,7 +15,8 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [AuthGuard, AuthService]
+  providers: [AuthService]
+
 })
 
 export class AppRoutingModule { }

@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: Http) {
     this.user = new User();
-    this.url = 'http://localhost/user';
+    this.url = 'http://localhost:3000/user';
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
 
@@ -23,6 +23,12 @@ export class UserService {
         if(jsonRes.success) return true;
         else return false;
       });
+  }
+
+  registerUser(user: User): Observable<any> {
+    let registerUrl = `${this.url}/register`;
+    return this.http.post(registerUrl, user.encode(), this.headers)
+      .map(response => response.json());
   }
 
   getUser(): User {

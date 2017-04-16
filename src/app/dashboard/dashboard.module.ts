@@ -13,16 +13,20 @@ import { SearchComponent } from './search/search.component';
 import { TripsStatusComponent } from './trips-status/trips-status.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HostDetailsComponent } from './host-details/host-details.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 import { SearchService } from 'app/services/search.service';
 import { UserService } from 'app/services/user.service';
+import { AuthGuard } from 'app/auth-guard.service';
+
 
 const dashboardRoutes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: 'search', component: SearchComponent },
-    {path: 'host-detail/:index', component: HostDetailsComponent },
+    {path: 'host-detail/:index',  component: HostDetailsComponent },
     {path: 'trips', component: TripsStatusComponent },
-    {path: 'profile', component: ProfileComponent }
+    {path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
+    {path: 'register', component: RegisterUserComponent }
   ] }
 ];
 
@@ -41,9 +45,12 @@ const dashboardRoutes: Routes = [
                   SearchComponent,
                   TripsStatusComponent,
                   ProfileComponent,
-                  HostDetailsComponent
+                  HostDetailsComponent,
+                  RegisterUserComponent
                 ],
   exports: [RouterModule],
-  providers: [SearchService, UserService]
+  providers: [AuthGuard,
+              SearchService,
+              UserService]
 })
 export class DashboardModule { }

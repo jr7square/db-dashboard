@@ -1,11 +1,30 @@
-<p-panel header="db Project Log In">
-   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <label for="email">Email</label>
-      <input id="email" type="text" [(ngModel)]="userEmail" name="email" pInputText>
-      <label for="password"> Password </label>
-      <input id="password" type="password" [(ngModel)]="userPassword" name="password" pInputText>
-      <button type="submit" pButton label="Log In" icon="fa fa-check"></button>
-   </form>
-</p-panel>
+<div class="login-container">
+  <p-panel header="Log In">
+     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+       <div class="row">
+         <div class="col-md-3">
+           <label class="form-labels" for="email">Email</label>
+         </div>
+         <div class="col-md-6 col-md-offset-1">
+           <input [ngClass]="{'form-inputs': true, 'ui-state-error': this.wrongEmail}" id="email" type="text"
+           [(ngModel)]="userEmail" name="email" pInputText>
+         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label class="form-labels" for="password"> Password </label>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+          <input [ngClass]="{'form-inputs': true, 'ui-state-error': this.wrongPassword}" id="password" type="password" [(ngModel)]="userPassword" name="password" pInputText>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-7">
+          <button class="sign-in-btn" type="submit" pButton label="Log In" icon="fa fa-check"></button>
+        </div>
+      </div>
+     </form>
+  </p-panel>
+</div>
 
 {{diagnostic}}

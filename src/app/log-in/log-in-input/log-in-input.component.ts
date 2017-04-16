@@ -12,6 +12,8 @@ import { User } from '../user';
 export class LogInInputComponent implements OnInit {
    private userEmail: string;
    private userPassword: string;
+   private wrongPassword: boolean;
+   private wrongEmail: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private authService: AuthService, private userService: UserService) {
@@ -25,16 +27,22 @@ export class LogInInputComponent implements OnInit {
 
     this.authService.login(this.userEmail, this.userPassword).subscribe(response => {
       console.log(response);
-      let user: User =  new User(
-        response.user.email,
-        response.user.password,
-        response.user.phone,
-        response.user.city,
-        response.user.country,
-        response.user.address
-      );
-      this.userService.setUser(user);
-      this.router.navigate(['/dashboard'])
+      this.wrongPassword = response.wrongPassword;
+      this.wrongEmail = response.notFound;
+      if(!this.wrongEmail && !this.wrongPassword) {
+        let user: User =  new User(
+          response.user.email,
+          response.user.password,
+          response.user.phone,
+          response.user.city,
+          response.user.country,
+          response.user.address
+        );
+        this.userService.setUser(user);
+        this.router.navigate(['/dashboard']);
+      }
+
+
     }
 
     );

@@ -1,3 +1,5 @@
+import { TripJSON } from 'app/utils/trip-json';
+
 export class Trip {
   private _tripId: string;
   private _hostEmail: string;
@@ -46,5 +48,19 @@ export class Trip {
   get endDate(): string {
     return this._endDate;
   }
+
+  encode(): TripJSON {
+    return Object.assign({}, {
+      tripId: this._tripId,
+      hostEmail: this._hostEmail,
+      touristEmail: this._touristEmail,
+      city: this._city,
+      country: this._country,
+      startDate: this._startDate,
+      endDate: this._endDate
+    });
+  }
+
+
 
 }
