@@ -1,4 +1,6 @@
-<p>
-  Searching for Hosts!
-</p>
-<div> {{ diagnostic}} </div>
+<div>
+  <ul *ngFor="let host of searchResults; let i = index">
+    <li (click)="showHostDetails(i)">{{host.firstName}}</li>
+  </ul>
+</div>
+<!-- <div> {{ diagnostic}} </div> -->

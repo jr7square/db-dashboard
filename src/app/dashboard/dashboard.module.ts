@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ToolbarModule,
          ButtonModule,
@@ -11,6 +12,7 @@ import { MenubarComponent } from './menubar/menubar.component';
 import { SearchComponent } from './search/search.component';
 import { TripsStatusComponent } from './trips-status/trips-status.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HostDetailsComponent } from './host-details/host-details.component';
 
 import { SearchService } from 'app/services/search.service';
 import { UserService } from 'app/services/user.service';
@@ -18,6 +20,7 @@ import { UserService } from 'app/services/user.service';
 const dashboardRoutes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: 'search', component: SearchComponent },
+    {path: 'host-detail/:index', component: HostDetailsComponent },
     {path: 'trips', component: TripsStatusComponent },
     {path: 'profile', component: ProfileComponent }
   ] }
@@ -25,6 +28,7 @@ const dashboardRoutes: Routes = [
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     ToolbarModule,
     ButtonModule,
@@ -36,7 +40,8 @@ const dashboardRoutes: Routes = [
                   MenubarComponent,
                   SearchComponent,
                   TripsStatusComponent,
-                  ProfileComponent
+                  ProfileComponent,
+                  HostDetailsComponent
                 ],
   exports: [RouterModule],
   providers: [SearchService, UserService]

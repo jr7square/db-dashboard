@@ -10,10 +10,12 @@ import 'rxjs/add/operator/map';
 export class SearchService {
   private readonly url: string;
   private readonly headers: Headers;
+  private searchResults: Host[];
 
   constructor(private http: Http) {
     this.url = 'http://localhost:3000/search';
     this.headers = new Headers({'Content-Type': 'application/json'});
+    this.searchResults = [];
   }
 
   searchByCity(city: string): Observable<Host[]> {
@@ -22,7 +24,8 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       });
@@ -34,7 +37,8 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       });
@@ -47,7 +51,8 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       });
@@ -59,7 +64,8 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       });
@@ -71,7 +77,8 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       })
@@ -85,10 +92,15 @@ export class SearchService {
       .map(response => {
         let jResponse = response.json();
         if(jResponse.found) {
-          return this.resultsToHosts(jResponse.results);
+          this.searchResults = this.resultsToHosts(jResponse.results);
+          return this.searchResults;
         }
         else return [];
       })
+  }
+
+  getSearchResults(index: number): Host {
+    return this.searchResults[index];
   }
 
   private resultsToHosts(results: any): Host[] {
