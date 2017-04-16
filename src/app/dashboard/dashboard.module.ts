@@ -13,6 +13,7 @@ import { TripsStatusComponent } from './trips-status/trips-status.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { SearchService } from 'app/services/search.service';
+import { UserService } from 'app/services/user.service';
 
 const dashboardRoutes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -38,6 +39,6 @@ const dashboardRoutes: Routes = [
                   ProfileComponent
                 ],
   exports: [RouterModule],
-  providers: [SearchService]
+  providers: [SearchService, UserService]
 })
 export class DashboardModule { }

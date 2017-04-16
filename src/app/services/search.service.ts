@@ -8,8 +8,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SearchService {
-  private url: string;
-  private headers: Headers;
+  private readonly url: string;
+  private readonly headers: Headers;
 
   constructor(private http: Http) {
     this.url = 'http://localhost:3000/search';
@@ -52,7 +52,7 @@ export class SearchService {
         else return [];
       });
   }
-  //
+
   searchByCityDate(city: string, startDate: string, endDate: string): Observable<Host[]> {
     let searchCityUrl: string = `${this.url}/city?city=${city}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(searchCityUrl)
@@ -64,7 +64,7 @@ export class SearchService {
         else return [];
       });
   }
-  //
+
   searchByCountryDate(country: string, startDate: string, endDate: string): Observable<Host[]> {
     let searchCountryDateUrl: string = `${this.url}/country?country=${country}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(searchCountryDateUrl)
