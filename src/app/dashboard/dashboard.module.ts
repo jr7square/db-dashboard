@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ToolbarModule,
+         InputTextModule,
          ButtonModule,
          MenuModule,
          MenuItem,
-         DropdownModule } from 'primeng/primeng';
+         DropdownModule,
+         GrowlModule,
+         InputMaskModule } from 'primeng/primeng';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { SearchComponent } from './search/search.component';
@@ -34,23 +38,30 @@ const dashboardRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
     ToolbarModule,
     ButtonModule,
     MenuModule,
     DropdownModule,
+    GrowlModule,
+    InputMaskModule,
     RouterModule.forChild(dashboardRoutes)
   ],
-  declarations: [ DashboardComponent,
-                  MenubarComponent,
-                  SearchComponent,
-                  TripsStatusComponent,
-                  ProfileComponent,
-                  HostDetailsComponent,
-                  RegisterUserComponent
-                ],
+  declarations: [
+    DashboardComponent,
+    MenubarComponent,
+    SearchComponent,
+    TripsStatusComponent,
+    ProfileComponent,
+    HostDetailsComponent,
+    RegisterUserComponent
+  ],
   exports: [RouterModule],
-  providers: [AuthGuard,
-              SearchService,
-              UserService]
+  providers: [
+    AuthGuard,
+    SearchService,
+    UserService
+  ]
 })
 export class DashboardModule { }

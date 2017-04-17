@@ -1,3 +1,139 @@
-<p>
-  register-user works!
-</p>
+<p-growl [value]="msgs" life="3000"></p-growl>
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-1">
+            <h1>Create An Account</h1>
+          </div>
+        </div>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <div class="row form-field">
+          <div class="col-md-4 col-md-offset-2">
+            <h3>Required Fields</h3>
+          </div>
+        </div>
+        <!-- First Name input -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label>First Name *: </label></div>
+          <div class="col-md-3">
+            <input type="text" formControlName="firstName" pInputText>
+          </div>
+          <div class="col-md-3">
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="validForm('firstName')">
+                <i class="fa fa-close"></i>
+                Firstname is required
+            </div>
+          </div>
+        </div>
+        <!-- Last Name Input -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Last Name *: </label></div>
+          <div class="col-md-3">
+            <input type="text" formControlName="lastName" pInputText>
+          </div>
+          <div class="col-md-3">
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="validForm('lastName')">
+                <i class="fa fa-close"></i>
+                Lastname is required
+            </div>
+          </div>
+        </div>
+        <!-- Email Input -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2" ><label> Email *: </label></div>
+          <div class="col-md-3">
+            <input type="email" formControlName="email" placeholder="user@mail.com" pInputText>
+          </div>
+          <div class="col-md-3">
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="validForm('email')">
+                <i class="fa fa-close"></i>
+                Email is required
+            </div>
+          </div>
+        </div>
+        <!-- Password Input -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Password *: </label></div>
+          <div class="col-md-3">
+            <input type="password" formControlName="password" pInputText>
+          </div>
+          <div class="col-md-3">
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="validForm('password')">
+                <i class="fa fa-close"></i>
+                Password is required
+            </div>
+          </div>
+        </div>
+        <!-- Password Confirm -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Confirm Password *: </label></div>
+          <div class="col-md-3">
+            <input type="password" formControlName="confirmPass" pInputText>
+          </div>
+          <div class="col-md-3">
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="validForm('confirmPass')">
+                <i class="fa fa-close"></i>
+                Comfirm password is required
+            </div>
+            <div class="ui-message ui-messages-error ui-corner-all"
+            *ngIf="checkPassword()">
+                <i class="fa fa-close"></i>
+                Passwords don't match is required
+            </div>
+          </div>
+        </div>
+        <div class="row form-field">
+          <div class="col-md-4 col-md-offset-2">
+            <h3>Optional Fields</h3>
+          </div>
+        </div>
+        <!-- Phone Input -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Phone : </label></div>
+          <div class="col-md-3">
+              <p-inputMask formControlName="phone" mask="(999)-999-9999"></p-inputMask>
+          </div>
+        </div>
+        <!-- City -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> City : </label></div>
+          <div class="col-md-3">
+            <input type="text" formControlName="city" pInputText>
+          </div>
+        </div>
+        <!-- Country -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Country : </label></div>
+          <div class="col-md-3">
+            <input type="text" formControlName="country" pInputText>
+          </div>
+        </div>
+        <!-- Address -->
+        <div class="row form-field">
+          <div class="col-md-2 col-md-offset-2"><label> Address : </label></div>
+          <div class="col-md-3">
+            <input type="text" formControlName="address" pInputText>
+          </div>
+        </div>
+        <div class="row form-button">
+          <div class="col-md-4 col-md-offset-2">
+            <button type="submit" icon="fa fa-check" label="Register" pButton></button>
+          </div>
+        </div>
+      </form>
+      <!-- <button class="btn btn-info" (click)="showSubmit()">Submit</button>
+      <button type="submit" label="Submit" pButton></button> -->
+    </div>
+  </div>
+</div>
+
+
+{{diagnostic}}
