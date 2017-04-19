@@ -9,6 +9,7 @@ import { User } from '../user';
   templateUrl: './log-in-input.component.html',
   styleUrls: ['./log-in-input.component.css']
 })
+
 export class LogInInputComponent implements OnInit {
    private userEmail: string;
    private userPassword: string;
@@ -24,7 +25,6 @@ export class LogInInputComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.authService.login(this.userEmail, this.userPassword).subscribe(response => {
       console.log(response);
       this.wrongPassword = response.wrongPassword;
@@ -36,18 +36,19 @@ export class LogInInputComponent implements OnInit {
           response.user.phone,
           response.user.city,
           response.user.country,
-          response.user.address
+          response.user.address,
+          response.user.first_name,
+          response.user.last_name
         );
         this.userService.setUser(user);
         this.router.navigate(['/dashboard']);
       }
-
-
-    }
-
-    );
+    });
   }
 
-  //get diagnostic() { return JSON.stringify(this.user)}
+  get diagnostic() {
+    return JSON.stringify({email: this.userEmail,
+                          password: this.userPassword })
+    }
 
 }

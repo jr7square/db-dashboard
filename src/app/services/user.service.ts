@@ -3,6 +3,7 @@ import { User } from 'app/log-in/user';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,7 @@ export class UserService {
 
   constructor(private http: Http) {
     this.user = new User();
-    this.url = 'http://localhost:3000/user';
+    this.url = environment.baseUrl;
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
 

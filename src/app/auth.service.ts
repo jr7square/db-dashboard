@@ -4,6 +4,7 @@ import { User } from 'app/log-in/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Headers, Http } from '@angular/http';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -13,12 +14,14 @@ export class AuthService {
   private headers: Headers;
 
   constructor(private http: Http) {
-    this.url = 'http://localhost:3000/users/login';
-    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.url = environment.baseUrl;
+    this.headers = new Headers({'Accept': 'application/json','Content-Type': 'application/json'});
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(this.url, {email: email, password: password}, this.headers)
+    let loginUrl = `${this.url}/Touring360/login`;
+    let testUrl = "http://localhost:3000/users/login";
+    return this.http.post(testUrl, {email: email, password: password}, this.headers)
     .map(response => {
       console.log(response.json());
       let jResponse = response.json();
