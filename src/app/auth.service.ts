@@ -10,8 +10,8 @@ import { environment } from 'environments/environment';
 export class AuthService {
   private isLoggedIn: boolean = false;
   private redirectUrl: string;
-  private url: string;
-  private headers: Headers;
+  private readonly url: string;
+  private readonly headers: Headers;
 
   constructor(private http: Http) {
     this.url = environment.baseUrl;
@@ -19,12 +19,11 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    let loginUrl = `${this.url}/Touring360/login`;
-    let testUrl = "http://localhost:3000/users/login";
-    return this.http.post(testUrl, {email: email, password: password}, this.headers)
+    const loginUrl = `${this.url}/users/login`;
+    return this.http.post(loginUrl, {email: email, password: password}, this.headers)
     .map(response => {
       console.log(response.json());
-      let jResponse = response.json();
+      const jResponse = response.json();
       if(jResponse.success){
         this.isLoggedIn = true;
       }

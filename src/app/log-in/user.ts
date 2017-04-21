@@ -16,7 +16,7 @@ export class User {
               firstName?: string, lastName?: string) {
       this._email = email;
       this._password = password;
-      this._phone = this.phone;
+      this._phone = phone;
       this._city = city;
       this._country = country;
       this._address = address;
@@ -42,6 +42,7 @@ export class User {
        this._email,
        this._password,
        this._phone,
+       this._city,
        this._country,
        this._address,
        this._firstName,

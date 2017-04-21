@@ -10,7 +10,8 @@ import { ToolbarModule,
          MenuItem,
          DropdownModule,
          GrowlModule,
-         InputMaskModule } from 'primeng/primeng';
+         InputMaskModule,
+         MessagesModule } from 'primeng/primeng';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { SearchComponent } from './search/search.component';
@@ -45,6 +46,7 @@ const dashboardRoutes: Routes = [
     DropdownModule,
     GrowlModule,
     InputMaskModule,
+    MessagesModule,
     RouterModule.forChild(dashboardRoutes)
   ],
   declarations: [

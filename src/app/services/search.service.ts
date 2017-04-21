@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { Host } from 'app/dashboard/host';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 
 
 
@@ -13,16 +14,16 @@ export class SearchService {
   private searchResults: Host[];
 
   constructor(private http: Http) {
-    this.url = 'http://localhost:3000/search';
+    this.url = `${environment.baseUrl}/search`;
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.searchResults = [];
   }
 
   searchByCity(city: string): Observable<Host[]> {
-    let searchCityUrl: string = `${this.url}/city?city=${city}`;
+    const searchCityUrl: string = `${this.url}/city?city=${city}`;
     return this.http.get(searchCityUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;
@@ -32,10 +33,10 @@ export class SearchService {
   }
 
   searchByCountry(country: string): Observable<Host[]> {
-    let searchCountryUrl: string = `${this.url}/country?country=${country}`;
+    const searchCountryUrl: string = `${this.url}/country?country=${country}`;
     return this.http.get(searchCountryUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;
@@ -46,10 +47,10 @@ export class SearchService {
   }
   //
   searchByCityCountry(city: string, country: string): Observable<Host[]> {
-    let searchCityCountryUrl: string = `${this.url}/city&country?city=${city}&country=${country}`;
+    const searchCityCountryUrl: string = `${this.url}/city&country?city=${city}&country=${country}`;
     return this.http.get(searchCityCountryUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;
@@ -59,10 +60,10 @@ export class SearchService {
   }
 
   searchByCityDate(city: string, startDate: string, endDate: string): Observable<Host[]> {
-    let searchCityUrl: string = `${this.url}/city?city=${city}&startDate=${startDate}&endDate=${endDate}`;
+    const searchCityUrl: string = `${this.url}/city?city=${city}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(searchCityUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;
@@ -72,10 +73,10 @@ export class SearchService {
   }
 
   searchByCountryDate(country: string, startDate: string, endDate: string): Observable<Host[]> {
-    let searchCountryDateUrl: string = `${this.url}/country?country=${country}&startDate=${startDate}&endDate=${endDate}`;
+    const searchCountryDateUrl: string = `${this.url}/country?country=${country}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(searchCountryDateUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;
@@ -86,11 +87,11 @@ export class SearchService {
   }
   //
   searchByCityCountryDate(city: string, country: string, startDate: string, endDate: string): Observable<Host[]> {
-    let searchUrl: string = `${this.url}/city&country?city=${city}&country=${country}&startDate=${startDate}
+    const searchUrl: string = `${this.url}/city&country?city=${city}&country=${country}&startDate=${startDate}
                               &endDate=${endDate}`;
     return this.http.get(searchUrl)
       .map(response => {
-        let jResponse = response.json();
+        const jResponse = response.json();
         if(jResponse.found) {
           this.searchResults = this.resultsToHosts(jResponse.results);
           return this.searchResults;

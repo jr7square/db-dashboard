@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://django-env.92j4wqasxc.us-east-1.elasticbeanstalk.com'
+  baseUrl: 'http://localhost:3000',
+  loginUrl: 'http://localhost:3000/users/login'
 };

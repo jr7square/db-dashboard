@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { Trip } from 'app/dashboard/trip';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class TripsService {
@@ -11,21 +12,21 @@ export class TripsService {
   private readonly headers: Headers;
 
   constructor(private http: Http) {
-    this.url = 'http://localhost:3000/';
+    this.url = environment.baseUrl;
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
 
   getUserTrips(userEmail: string): Observable<Trip> {
     return this.http.post(this.url, {userEmail: userEmail}, this.headers)
       .map(response => {
-        let jsonRes = response.json();
+        const jsonRes = response.json();
         if(jsonRes.success) return jsonRes;
         else return [];
       });
   }
 
   bookTrip(trip: Trip): Observable<any> {
-    let bookUrl = `${this.url}/bookTrip`;
+    const bookUrl = `${this.url}/bookTrip`;
     return this.http.post(bookUrl, trip.encode(), this.headers)
       .map(response => {
         return response.json();
@@ -33,6 +34,6 @@ export class TripsService {
   }
 
 
-  
+
 
 }
