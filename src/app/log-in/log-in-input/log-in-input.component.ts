@@ -41,7 +41,7 @@ export class LogInInputComponent implements OnInit {
           response.user.last_name
         );
         this.userService.setUser(user);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/search']);
       }
     });
   }

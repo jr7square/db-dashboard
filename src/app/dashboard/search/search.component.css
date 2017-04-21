@@ -1,0 +1,35 @@
+.hosts {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.hosts li.static {
+  cursor: pointer;
+  position: static;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.hosts li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.hosts .text {
+  position: static;
+  top: -3px;
+}
+.input_container.relative{
+  cursor: pointer;
+  left: 0;
+  background-color: #c5eee5;
+  margin: 10px;
+  padding: 10px;
+  height: 1.6em;
+  border-radius: 4px;
+}
