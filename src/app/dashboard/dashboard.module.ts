@@ -21,6 +21,7 @@ import { HostDetailsComponent } from './host-details/host-details.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 
 import { SearchService } from 'app/services/search.service';
+import { TripsService } from 'app/services/trips.service';
 import { AuthGuard } from 'app/auth-guard.service';
 
 
@@ -61,7 +62,8 @@ const dashboardRoutes: Routes = [
   exports: [RouterModule],
   providers: [
     AuthGuard,
-    SearchService
+    SearchService,
+    TripsService
   ]
 })
 export class DashboardModule { }

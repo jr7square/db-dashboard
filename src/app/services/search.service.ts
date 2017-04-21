@@ -82,7 +82,7 @@ export class SearchService {
           return this.searchResults;
         }
         else return [];
-      })
+      });
 
   }
   //
@@ -97,7 +97,7 @@ export class SearchService {
           return this.searchResults;
         }
         else return [];
-      })
+      });
   }
 
   getSearchResults(index: number): Host {

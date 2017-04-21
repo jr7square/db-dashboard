@@ -1,6 +1,26 @@
-<div>
+
+<div class="input_container">
+  <form (ngSubmit)="onSubmit()" name="search" id="search">
+    City:<br><i class="fa fa-search"></i>
+    <input type="text" name="search_city" [(ngModel)]="searchCity" placeholder="Enter city here">
+    <br>
+    Country:<br><i class="fa fa-search"></i>
+    <input type="text" name="search_country" [(ngModel)]="searchCountry" placeholder="Enter country here">
+    <br>
+    Start Trip:<br><i class="fa fa-calendar"></i>
+    <input type="text" name="search_start_date" [(ngModel)]="searchStartDate" placeholder="Enter start date here">
+    <br>
+    End Trip:<br><i class="fa fa-calendar"></i>
+    <input type="text" name="search_end_date" [(ngModel)]="searchEndDate" placeholder="Enter end date here">
+    <br><br>
+    <button class="sign-in-btn" type="submit" pButton label="Search"></button>
+  </form>
+</div>
+<br><br>
+<!-- add if condition here because initially it will be empty -->
+<div class="hosts">
   <ul *ngFor="let host of searchResults; let i = index">
-    <li (click)="showHostDetails(i)">{{host.firstName}}</li>
+    <li (click)="showHostDetails(i)">{{host.firstName}} {{host.lastName}} {{host.city}} {{host.country}}</li>
   </ul>
 </div>
-<!-- <div> {{ diagnostic}} </div> -->
+<div> {{ searchDiagnostic}} </div>
