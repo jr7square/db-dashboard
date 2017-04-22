@@ -1,26 +1,108 @@
 
-<div class="input_container">
-  <form (ngSubmit)="onSubmit()" name="search" id="search">
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading">
+      <h1> Search For Hosts! </h1>
+    </div>
+    <div class="panel-body">
+      <form (ngSubmit)="onSubmit()" name="search" id="search">
+        <div class="row search-format">
+          <div class="col-md-2 text-right">
+            <label>City :</label>
+          </div>
+          <div class="col-md-3 text-left">
+            <input type="text" name="search_city" [(ngModel)]="searchCity" placeholder="Enter city here" pInputText>
+          </div>
+          <div class="col-md-2 col -md-offset-1 text-right">
+            <label>Country :</label>
+          </div>
+          <div class="col-md-3 text-left">
+            <input type="text" name="search_country" [(ngModel)]="searchCountry" placeholder="Enter country here" pInputText>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-1 text-center">
+            <label>Trip Start Date</label>
+          </div>
+          <div class="col-md-3  text-center">
+            <label>Trip End Date</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-1 text-center">
+            <!-- Calendar goes here -->
+            <p-calendar name="search_start_date" [(ngModel)]="searchStartDate" dateFormat="yy-mm-dd" dataType="string" showIcon="true"></p-calendar>
+          </div>
+          <div class="col-md-3 text-center">
+            <!-- Calendar goes here -->
+            <p-calendar name="search_end_date" [(ngModel)]="searchEndDate" dateFormat="yy-mm-dd" dataType="string" showIcon="true"></p-calendar>
+          </div>
+          <div class="col-md-3 text-center">
+            <button class="sign-in-btn" type="submit" icon="fa fa-search"  pButton label="Search"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <p-dataList [value]="searchResults" [paginator]="true" [rows]="5">
+    <p-header>
+      Search Results
+    </p-header>
+    <ng-template let-host let-i="index" pTemplate="item">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-3 text-right">
+              <label>Name :</label>
+            </div>
+            <div class="col-md-6">
+              {{host.firstName}} {{host.lastName}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 text-right">
+              <label>Location :</label>
+            </div>
+            <div class="col-md-6">
+              {{host.city }}, {{host.country}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>Rating: </label>
+          <p-rating value="host.rating" readonly="true" cancel="false"></p-rating>
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+          <button (click)="showHostDetails(i)" class="details-btn" type="button" label="Details" pButton></button>
+        </div>
+      </div>
+
+    </ng-template>
+  </p-dataList>
+</div>
+  <!-- <form (ngSubmit)="onSubmit()" name="search" id="search">
     City:<br><i class="fa fa-search"></i>
-    <input type="text" name="search_city" [(ngModel)]="searchCity" placeholder="Enter city here">
+    <input type="text" name="search_city" [(ngModel)]="searchCity" placeholder="Enter city here" pInputText>
     <br>
     Country:<br><i class="fa fa-search"></i>
-    <input type="text" name="search_country" [(ngModel)]="searchCountry" placeholder="Enter country here">
+    <input type="text" name="search_country" [(ngModel)]="searchCountry" placeholder="Enter country here" pInputText>
     <br>
     Start Trip:<br><i class="fa fa-calendar"></i>
-    <input type="text" name="search_start_date" [(ngModel)]="searchStartDate" placeholder="Enter start date here">
+    <input type="text" name="search_start_date" [(ngModel)]="searchStartDate" placeholder="Enter start date here" pInputText>
     <br>
     End Trip:<br><i class="fa fa-calendar"></i>
-    <input type="text" name="search_end_date" [(ngModel)]="searchEndDate" placeholder="Enter end date here">
+    <input type="text" name="search_end_date" [(ngModel)]="searchEndDate" placeholder="Enter end date here" pInputText>
     <br><br>
     <button class="sign-in-btn" type="submit" pButton label="Search"></button>
   </form>
 </div>
-<br><br>
+<br><br> -->
 <!-- add if condition here because initially it will be empty -->
-<div class="hosts">
+<!-- <div class="container">
   <ul *ngFor="let host of searchResults; let i = index">
     <li (click)="showHostDetails(i)">{{host.firstName}} {{host.lastName}} {{host.city}} {{host.country}}</li>
   </ul>
-</div>
+</div> -->
 <div> {{ searchDiagnostic}} </div>
