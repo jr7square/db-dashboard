@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchService } from 'app/services/search.service';
 import { TripsService } from 'app/services/trips.service';
 import { UserService } from 'app/services/user.service';
+import { Message } from 'primeng/primeng';
 import { Host } from 'app/dashboard/host';
 import { Trip } from 'app/dashboard/trip';
 import { User } from 'app/log-in/user';
@@ -21,6 +22,8 @@ export class HostDetailsComponent implements OnInit {
   private bookEndDate: string;
   private invalidTrip: boolean;
   private bookedTrip: boolean;
+  private tripTaken: boolean;
+  private msgs: Message [];
 
   constructor(private route: ActivatedRoute, private router: Router,
               private searchService: SearchService,
@@ -45,17 +48,29 @@ export class HostDetailsComponent implements OnInit {
       this.host.city,
       this.host.country
     );
-    this.tripsService.bookTrip(trip).subscribe(response => {
-      this.invalidTrip = response.invalidTrip;
-      this.bookedTrip = response.tripBooked;
-      if (!this.invalidTrip){
+    this.tripsService.bookTrip(trip)
+      .subscribe(response => {
+        this.msgs = [];
+        this.invalidTrip = response.invalidTrip;
+        this.bookedTrip = response.tripBooked;
+        this.tripTaken = response.tripTaken;
+        if (this.bookedTrip){
         // trip is booked
-        this.router.navigate(['/dashboard/search']);
-      }
-
-
+          this.msgs.push({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Trip has being booked!'
+          });
+        // this.router.navigate(['/dashboard/search']);
+        }
+        else if(this.tripTaken){
+          this.msgs.push({
+            severity: 'warn',
+            summary: 'Date Taken',
+            detail: 'Trip could not be book due to conflicting dates'
+          });
+        }
     });
-
   }
 
   backToSearch(): void {

@@ -1,3 +1,5 @@
+
+
 .details-btn {
   margin-top: 8px;
 }
@@ -38,6 +40,15 @@
   border-radius: 4px;
 }
 
+.no-col-padding {
+  padding-left: 0px;
+}
+
 .search-format {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.search-item {
+  margin-bottom: 10px;
+  border-style: solid;
 }

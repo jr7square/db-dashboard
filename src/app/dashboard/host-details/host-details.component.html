@@ -1,31 +1,67 @@
-<div>
-  <h1>Search: <span>{{ host.city }}&#x2c; {{ host.country }}</span></h1>
-  <h2>With: <span>{{ host._firstName }} {{host._lastName }}</span> Rating:<span>{{ host._rating }}</span></h2>
+<p-growl [value]="msgs" life="3000"></p-growl>
+<div class="container">
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Location: <span>{{ host.city }}&#x2c; {{ host.country }}</span></h1>
+        </div>
+      </div>
+      <div clas="row">
+        <div class="col-md-4">
+          <h2>With: <span>{{ host.firstName }} {{host.lastName }}</span></h2>
+        </div>
+        <div class="col-md-3 text-right">
+          <h2> Rating :</h2>
+        </div>
+        <div class="col-md-5">
+          <h2><p-rating [(ngModel)]="host.rating" readonly="true" [cancel]="false"></p-rating></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-body">
+      <section>
+        <div>
+          <h2>About this Host</h2>
+        </div>
+        <div>
+          <p>{{host._bio}}</p>
+        </div>
+      </section>
+      <section>
+        <h2>Interested in booking?</h2>
+        <form (ngSubmit)="onSubmit()" name="book" id="book">
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <label>Trip Start Date</label>
+            </div>
+            <div class="col-md-3 text-center">
+              <label>Trip End Date</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <!-- Calendar goes here -->
+              <p-calendar name="book_start_date" [(ngModel)]="bookStartDate" dateFormat="yy-mm-dd" dataType="string" showIcon="true"></p-calendar>
+            </div>
+            <div class="col-md-3 text-center">
+              <!-- Calendar goes here -->
+              <p-calendar name="book_end_date" [(ngModel)]="bookEndDate" dateFormat="yy-mm-dd" dataType="string" showIcon="true"></p-calendar>
+            </div>
+            <div class="col-md-3 text-center">
+              <button class="sign-in-btn" type="submit" pButton label="Book"></button>
+            </div>
+          </div>
+        </form>
+      </section>
+      <div class="row back-btn">
+        <div class="col-md-3">
+          <button (click)="backToSearch()" pButton label="Back To Search"></button>
+        </div>
+      </div>
+    </div>
 </div>
-<section>
-  <div>
-    <h2>About this Host</h2>
-  </div>
-  <div>
-    <p>{{host._bio}}</p>
-  </div>
-
-</section>
-<section>
-  <h2>Interested in booking?</h2>
-  <div class="book_date_container">
-    <form (ngSubmit)="onSubmit()" name="book">
-      Start Trip:<br><i class="fa fa-calendar"></i>
-      <input type="text" name="book_start_date" [(ngModel)]="bookStartDate" placeholder="Enter start date here">
-      <br>
-      End Trip:<br><i class="fa fa-calendar"></i>
-      <input type="text" name="book_end_date" [(ngModel)]="bookEndDate" placeholder="Enter end date here">
-      <br><br>
-      <button class="sign-in-btn" type="submit" pButton label="Book"></button>
-    </form>
-  </div>
-</section>
 
 <div> {{ bookDiagnostic}} </div>
-
-<button (click)="backToSearch()">Back To Search</button>

@@ -20,15 +20,20 @@ export class SearchComponent implements OnInit {
   constructor(private router: Router, private searchService: SearchService) { }
 
   ngOnInit(): void {
+    this.searchResults = this.searchService.getAllResults();
   }
 
   onSubmit() {
-    if (this.searchCity != null && this.searchCountry == null && this.searchStartDate == null && this.searchEndDate == null){
+    if (this.searchCity != null && (this.searchCountry == null || this.searchCountry == '') &&
+        (this.searchStartDate == null || this.searchStartDate == '')  &&
+        (this.searchEndDate == null ||this.searchEndDate == '')){
       this.searchService.searchByCity(this.searchCity)
         .subscribe(hosts => {
           this.searchResults = hosts;
         })
-    } else if (this.searchCity == null && this.searchCountry != null && this.searchStartDate == null && this.searchEndDate == null){
+    } else if ((this.searchCity == null || this.searchCity == '') && this.searchCountry != null &&
+              (this.searchStartDate == null || this.searchStartDate == '') &&
+              (this.searchEndDate == null || this.searchEndDate == '')){
       this.searchService.searchByCountry(this.searchCountry)
         .subscribe(hosts => {
           this.searchResults = hosts;
@@ -38,12 +43,13 @@ export class SearchComponent implements OnInit {
         .subscribe(hosts => {
           this.searchResults = hosts;
         })
-    } else if (this.searchCity != null && this.searchCountry == null && this.searchStartDate != null && this.searchEndDate != null){
+    } else if (this.searchCity != null && (this.searchCountry == null || this.searchCountry == '') &&
+              this.searchStartDate != null && this.searchEndDate != null){
       this.searchService.searchByCityDate(this.searchCity, this.searchStartDate, this.searchEndDate)
         .subscribe(hosts => {
           this.searchResults = hosts;
         })
-    } else if (this.searchCity == null && this.searchCountry != null && this.searchStartDate != null && this.searchEndDate != null){
+    } else if ((this.searchCity == null || this.searchCity == '') && this.searchCountry != null && this.searchStartDate != null && this.searchEndDate != null){
       this.searchService.searchByCountryDate(this.searchCountry, this.searchStartDate, this.searchEndDate)
         .subscribe(hosts => {
           this.searchResults = hosts;
@@ -68,5 +74,3 @@ export class SearchComponent implements OnInit {
   }
 
 }
-
-

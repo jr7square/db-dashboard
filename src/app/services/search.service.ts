@@ -20,7 +20,7 @@ export class SearchService {
   }
 
   searchByCity(city: string): Observable<Host[]> {
-    const searchCityUrl: string = `${this.url}/city?city=${city}`;
+    const searchCityUrl: string = `${this.url}/city/noDate?city=${city}`;
     return this.http.get(searchCityUrl)
       .map(response => {
         const jResponse = response.json();
@@ -33,7 +33,7 @@ export class SearchService {
   }
 
   searchByCountry(country: string): Observable<Host[]> {
-    const searchCountryUrl: string = `${this.url}/country?country=${country}`;
+    const searchCountryUrl: string = `${this.url}/country/noDate?country=${country}`;
     return this.http.get(searchCountryUrl)
       .map(response => {
         const jResponse = response.json();
@@ -47,7 +47,7 @@ export class SearchService {
   }
   //
   searchByCityCountry(city: string, country: string): Observable<Host[]> {
-    const searchCityCountryUrl: string = `${this.url}/city&country?city=${city}&country=${country}`;
+    const searchCityCountryUrl: string = `${this.url}/city&country/noDate?city=${city}&country=${country}`;
     return this.http.get(searchCityCountryUrl)
       .map(response => {
         const jResponse = response.json();
@@ -102,6 +102,10 @@ export class SearchService {
 
   getSearchResults(index: number): Host {
     return this.searchResults[index];
+  }
+
+  getAllResults(): Host [] {
+    return this.searchResults;
   }
 
   private resultsToHosts(results: any): Host[] {

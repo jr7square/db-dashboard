@@ -26,9 +26,10 @@ export class TripsService {
   }
 
   bookTrip(trip: Trip): Observable<any> {
-    const bookUrl = `${this.url}host/book`;
+    const bookUrl = `${this.url}/host/book`;
     return this.http.post(bookUrl, trip.encode(), this.headers)
       .map(response => {
+        console.log(response.json());
         return response.json();
       });
   }
