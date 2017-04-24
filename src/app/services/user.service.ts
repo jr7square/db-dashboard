@@ -27,7 +27,7 @@ export class UserService {
   }
 
   registerUser(user: User): Observable<any> {
-    const registerUrl = `${this.url}/register`;
+    const registerUrl = `${this.url}/users/register`;
     return this.http.post(registerUrl, user.encode(), this.headers)
       .map(response => response.json());
   }

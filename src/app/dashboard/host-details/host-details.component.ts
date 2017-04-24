@@ -3,10 +3,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchService } from 'app/services/search.service';
 import { TripsService } from 'app/services/trips.service';
 import { UserService } from 'app/services/user.service';
+import { ReviewsService } from 'app/services/reviews.service';
 import { Message } from 'primeng/primeng';
 import { Host } from 'app/dashboard/host';
 import { Trip } from 'app/dashboard/trip';
 import { User } from 'app/log-in/user';
+import { Review } from 'app/dashboard/review';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -18,6 +20,7 @@ import 'rxjs/add/operator/switchMap';
 export class HostDetailsComponent implements OnInit {
   private host: Host;
   private user: User;
+  private reviews: Review[];
   private bookStartDate: string;
   private bookEndDate: string;
   private invalidTrip: boolean;
@@ -28,7 +31,10 @@ export class HostDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router,
               private searchService: SearchService,
               private userService: UserService,
-              private tripsService: TripsService) {
+              private tripsService: TripsService,
+              private reviewsService: ReviewsService) {
+
+    this.reviews = [];
   }
 
   ngOnInit() {
@@ -36,7 +42,10 @@ export class HostDetailsComponent implements OnInit {
       let hostIndex = +params['index'];
       this.host = this.searchService.getSearchResults(hostIndex);
       this.user = this.userService.getUser();
+      this.reviewsService.getHostReviews(this.host.email)
+        .subscribe(reviews => this.reviews = reviews);
     });
+
   }
 
   onSubmit(){
@@ -81,6 +90,10 @@ export class HostDetailsComponent implements OnInit {
     return JSON.stringify({
       startDate: this.bookStartDate,
       endDate: this.bookEndDate})
+  }
+
+  get reviewDiagnostic() {
+    return JSON.stringify(this.reviews);
   }
 
 }

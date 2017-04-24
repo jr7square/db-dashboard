@@ -62,6 +62,39 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <p-dataList [value]="reviews" [paginator]="true" [rows]="10">
+    <p-header>
+      <label>Reviews</label>
+    </p-header>
+    <ng-template let-review let-i="index" pTemplate="item">
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <label>Rating :</label>
+        </div>
+        <div class="col-md-3">
+          <p-rating [(ngModel)]="review.rating" readonly="true" [cancel]="false"></p-rating>
+        </div>
+        <div class="col-md-2 text-right">
+          <label>Date :</label>
+        </div>
+        <div class="col-md-3">
+          {{ review.date.toLocaleDateString() }}
+        </div>
+      </div>
+      <div class="row review-format">
+        <div class="col-md-11 col-md-offset-1">
+          {{ review.comment }}
+        </div>
+      </div>
+    </ng-template>
+
+  </p-dataList>
 </div>
 
 <div> {{ bookDiagnostic}} </div>
+
+<div> {{ reviewDiagnostic }}

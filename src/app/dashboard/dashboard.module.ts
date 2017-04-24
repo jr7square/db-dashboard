@@ -25,6 +25,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 
 import { SearchService } from 'app/services/search.service';
 import { TripsService } from 'app/services/trips.service';
+import { ReviewsService } from 'app/services/reviews.service';
 import { AuthGuard } from 'app/auth-guard.service';
 
 
@@ -69,7 +70,8 @@ const dashboardRoutes: Routes = [
   providers: [
     AuthGuard,
     SearchService,
-    TripsService
+    TripsService,
+    ReviewsService
   ]
 })
 export class DashboardModule { }
