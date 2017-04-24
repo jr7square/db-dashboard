@@ -16,12 +16,12 @@ export class TripsService {
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
 
-  getUserTrips(userEmail: string): Observable<Trip> {
-    return this.http.post(this.url, {userEmail: userEmail}, this.headers)
+  getUserTrips(userEmail: string): Observable<any> {
+    const tripsUrl = `${this.url}/trips`;
+    return this.http.post(tripsUrl, {touristEmail: userEmail}, this.headers)
       .map(response => {
         const jsonRes = response.json();
         if(jsonRes.success) return jsonRes;
-        else return [];
       });
   }
 

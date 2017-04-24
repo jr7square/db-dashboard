@@ -9,8 +9,8 @@ export class Trip {
   private _startDate: string;
   private _endDate: string;
 
-  constructor(hostEmail: string, touristEmail: string, startDate: string, endDate: string,
-              city: string, country: string, tripId?: string )
+  constructor(hostEmail?: string, touristEmail?: string, startDate?: string, endDate?: string,
+              city?: string, country?: string, tripId?: string )
   {
     this._tripId = tripId;
     this._hostEmail = hostEmail;

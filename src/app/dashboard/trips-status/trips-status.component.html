@@ -1,3 +1,69 @@
-<p>
-  trips-status works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>Current Trips:</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row" *ngIf="curFound; else curBlock">
+          <div class="col-md-3 text-right">
+            <label>Location:</label>
+          </div>
+          <div class="col-md-6">
+            {{curTrip.city}} {{curTrip.country}}
+          </div>
+          <div class="col-md-3 col-md-offset-1">
+            <label>Host:</label>
+          </div>
+          <div class="col-md-6">
+            {{curTrip.hostEmail}}
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label>Start Date:</label>
+            </div>
+            <div class="col-md-3">
+              {{curTrip.startDate}}
+            </div>
+            <div class="col-md-3">
+              <label>End Date:</label>
+            </div>
+            <div class="col-md-3">
+              {{currentTrip.endDate}}
+            </div>
+          </div>
+          <br>
+          <div class="row col-md-12">
+            <p>put input text here</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <button class="sign-in-btn" type="submit" pButton label="Submit"></button>
+          </div>
+          <ng-template #curBlock>
+            <p>no current trips</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h1>Future Trips:</h1>
+  </div>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="col-md-12">
+        <div *ngIf="futFound; else futBlock">
+          <ul *ngFor="let trip of futureTrips">
+            <li>{{trip.city}} {{trip.country}} with {{trip.host_email}} </li>
+          </ul>
+        </div>
+        <ng-template #futBlock>
+          <p>No future Trips</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
