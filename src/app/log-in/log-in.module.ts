@@ -6,7 +6,7 @@ import { PanelModule, InputTextModule, ButtonModule } from 'primeng/primeng';
 import { LogInInputComponent } from './log-in-input/log-in-input.component';
 
 const logInRoutes: Routes = [
-  {path: '', component: LogInInputComponent},
+  {path: 'login', component: LogInInputComponent},
 ];
 
 @NgModule({

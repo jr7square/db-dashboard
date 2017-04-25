@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'},
   {path: 'login', loadChildren: 'app/log-in/log-in.module#LogInModule'},
-  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
 ];
 
 @NgModule({
