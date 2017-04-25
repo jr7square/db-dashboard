@@ -44,6 +44,10 @@ export class UserService {
     return this.user;
   }
 
+  destroyUser() {
+    this.user = new User();
+  }
+
   setUser(user: User): void {
     this.user = user;
   }

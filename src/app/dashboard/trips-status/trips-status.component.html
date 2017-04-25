@@ -1,3 +1,114 @@
-<p>
-  trips-status works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>Current Trips:</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row" *ngIf="curFound; else curBlock">
+          <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+              <label>Location:</label>
+            </div>
+            <div class="col-md-2">
+              {{curTrip.city}} {{curTrip.country}}
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+              <label>Host:</label>
+            </div>
+            <div class="col-md-2">
+              {{curTrip.hostEmail}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+              <label>Start Date:</label>
+            </div>
+            <div class="col-md-2">
+              {{curTrip.startDate}}
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+              <label>End Date:</label>
+            </div>
+            <div class="col-md-2">
+              {{curTrip.endDate}}
+            </div>
+          </div>
+          <div class="row">
+            <div clas="row">
+              <div class="col-md-12 text-center">
+                <h3>Leave a Review</h3>
+                <p-rating [(ngModel)]="rating" [cancel]="false"></p-rating>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <textarea rows="5" cols="80" pInputTextarea [(ngModel)]="reviewComment"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button class="sign-in-btn" type="button" (click)="submitReview()" pButton label="Submit"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #curBlock>
+          <p>no current trips</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h1>Future Trips:</h1>
+  </div>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div *ngIf="futFound; else futBlock">
+          <p-dataList [value]="futureTrips" [paginator]="true" [rows]="5">
+            <p-header>
+              <label>Future Trips</label>
+            </p-header>
+            <ng-template let-trip let-i="index" pTemplate="item">
+              <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                  <label>Location :</label>
+                </div>
+                <div class="col-md-3">
+                  <span>{{trip.city}}, {{trip.country}}</span>
+                </div>
+                <div class="col-md-3">
+                  <label>Contact Host :</label>
+                </div>
+                <div class="col-md-3">
+                  <span> {{trip.hostEmail}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                  <label>Start Date :</label>
+                </div>
+                <div class="col-md-3">
+                  {{trip.startDate}}
+                </div>
+                <div class="col-md-3">
+                  <label>End Date :</label>
+                </div>
+                <div class="col-md-3">
+                  {{trip.endDate }}
+                </div>
+              </div>
+            </ng-template>
+          </p-dataList>
+        </div>
+        <ng-template #futBlock>
+          <p>No future Trips</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

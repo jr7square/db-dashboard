@@ -14,7 +14,8 @@ import { ToolbarModule,
          MessagesModule,
          CalendarModule,
          DataListModule,
-         RatingModule } from 'primeng/primeng';
+         RatingModule,
+         InputTextareaModule } from 'primeng/primeng';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { SearchComponent } from './search/search.component';
@@ -55,6 +56,7 @@ const dashboardRoutes: Routes = [
     CalendarModule,
     DataListModule,
     RatingModule,
+    InputTextareaModule,
     RouterModule.forChild(dashboardRoutes)
   ],
   declarations: [
