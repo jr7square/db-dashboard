@@ -12,6 +12,7 @@ export class Trip {
   constructor(hostEmail?: string, touristEmail?: string, startDate?: string, endDate?: string,
               city?: string, country?: string, tripId?: string )
   {
+    
     this._tripId = tripId;
     this._hostEmail = hostEmail;
     this._touristEmail = touristEmail;

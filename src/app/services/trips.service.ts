@@ -19,10 +19,7 @@ export class TripsService {
   getUserTrips(userEmail: string): Observable<any> {
     const tripsUrl = `${this.url}/trips`;
     return this.http.post(tripsUrl, {touristEmail: userEmail}, this.headers)
-      .map(response => {
-        const jsonRes = response.json();
-        if(jsonRes.success) return jsonRes;
-      });
+      .map(response => response.json());
   }
 
   bookTrip(trip: Trip): Observable<any> {

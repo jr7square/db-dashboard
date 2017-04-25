@@ -56,9 +56,44 @@
     <div class="panel-body">
       <div class="col-md-12">
         <div *ngIf="futFound; else futBlock">
-          <ul *ngFor="let trip of futureTrips">
+          <p-dataList [value]="futureTrips" [paginator]="true" [rows]="5">
+            <p-header>
+              <label>Future Trips</label>
+            </p-header>
+            <ng-template let-trip let-i="index" pTemplate="item">
+              <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                  <label>Location :</label>
+                </div>
+                <div class="col-md-3">
+                  <span>{{trip.city}}, {{trip.country}}</span>
+                </div>
+                <div class="col-md-3">
+                  <label>Contact Host :</label>
+                </div>
+                <div class="col-md-3">
+                  <span> {{trip.hostEmail}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                  <label>Start Date :</label>
+                </div>
+                <div class="col-md-3">
+                  {{trip.startDate}}
+                </div>
+                <div class="col-md-3">
+                  <label>End Date :</label>
+                </div>
+                <div class="col-md-3">
+                  {{trip.endDate }}
+                </div>
+              </div>
+            </ng-template>
+          </p-dataList>
+          <!-- <ul *ngFor="let trip of futureTrips">
             <li>{{trip.city}} {{trip.country}} with {{trip.host_email}} </li>
-          </ul>
+          </ul> -->
         </div>
         <ng-template #futBlock>
           <p>No future Trips</p>
