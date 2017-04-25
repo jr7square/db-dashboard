@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Trip} from "../trip";
+import { Trip } from "../trip";
 import { Review } from "../review";
 import { User } from 'app/log-in/user';
 import { UserService } from 'app/services/user.service';
 import { TripsService } from 'app/services/trips.service';
 import { ReviewsService } from 'app/services/reviews.service';
+import { AuthService } from 'app/auth.service';
 
 import * as moment from 'moment';
 
@@ -30,7 +31,8 @@ export class TripsStatusComponent implements OnInit {
 
   constructor(private tripsService: TripsService,
               private userService: UserService,
-              private reviewsService: ReviewsService) { }
+              private reviewsService: ReviewsService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.curTrip = new Trip();

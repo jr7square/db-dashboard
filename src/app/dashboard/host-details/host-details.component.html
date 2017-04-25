@@ -50,8 +50,13 @@
               <!-- Calendar goes here -->
               <p-calendar name="book_end_date" [(ngModel)]="bookEndDate" dateFormat="yy-mm-dd" dataType="string" showIcon="true"></p-calendar>
             </div>
-            <div class="col-md-3 text-center">
-              <button class="sign-in-btn" type="submit" pButton label="Book"></button>
+            <div class="col-md-3 text-center; else registerToBook">
+              <div *ngIf="this.userService.getUser().email">
+                <button class="sign-in-btn" type="submit" pButton label="Book"></button>
+              </div>
+              <ng-template #registerToBook>
+                <label>Login before booking a trip!</label>
+              </ng-template>
             </div>
           </div>
         </form>

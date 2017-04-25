@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'app/auth.service';
+import { UserService } from 'app/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +11,9 @@ import { Router } from '@angular/router';
 export class MenubarComponent implements OnInit {
 
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -18,6 +21,7 @@ export class MenubarComponent implements OnInit {
 
   logOut() {
     this.authService.logout();
+    this.userService.destroyUser();
     this.router.navigate(['/dashboard']);
 
   }
