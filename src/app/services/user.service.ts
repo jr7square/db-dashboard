@@ -17,13 +17,21 @@ export class UserService {
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
 
-  updateUser(editedUser: User): Observable<boolean> {
-    return this.http.post(this.url, editedUser.encode(), this.headers)
-      .map(response => {
-        let jsonRes = response.json();
-        if(jsonRes.success) return true;
-        else return false;
-      });
+  updateUserEmail(formValues: any): Observable<any> {
+    const updateEmailUrl = `${this.url}/users/update/email`;
+    const requestBody = {email: formValues.email, newEmail: formValues.newEmail, password: formValues.password};
+    return this.http.put(updateEmailUrl, requestBody, this.headers)
+      .map(response => response.json());
+  }
+
+  updateUserPassword(formValues: any): Observable<any> {
+    const updatePasswordUrl = `${this.url}/users/update/password`;
+    const requestBody = {
+      email: formValues.email,
+      newPassword: formValues.newPassword,
+      password: formValues.currentPassword };
+    return this.http.put(updatePasswordUrl, requestBody, this.headers)
+      .map(response => response.json());
   }
 
   registerUser(user: User): Observable<any> {

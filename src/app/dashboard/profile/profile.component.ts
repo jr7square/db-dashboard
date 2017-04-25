@@ -43,12 +43,69 @@ export class ProfileComponent implements OnInit {
   }
 
   submitEmail() {
-    if(!this.changeEmailForm.controls['newEmail'].valid){
+    if(this.changeEmailForm.status == 'VALID'){
+      this.userService.updateUserEmail({
+        email: this.user.email,
+        newEmail: this.changeEmailForm.controls['newEmail'].value,
+        password: this.changeEmailForm.controls['password'].value })
+        .subscribe(response => {
+          if(response.success)
+            this.msgs.push({
+              severity: 'success',
+              summary: 'Email Updated',
+              detail: ''
+            });
+          else if(!response.passCheck)
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Failed validation',
+              detail: 'You are not authorize to peform email changes'
+            });
+          else if(response.passCheck && response.error)
+            this.msgs.push({
+              severity: 'warn',
+              summary: 'Email Taken',
+              detail: 'An account already exists with this email'
+            });
+
+        })
+
     }
 
   }
 
   submitPassword() {
+    console.log('executing submitting password')
+    if(this.changePasswordForm.status == 'VALID') {
+      this.userService.updateUserPassword({
+        email: this.user.email,
+        newPassword: this.changePasswordForm.controls['newPass'].value,
+        currentPassword: this.changePasswordForm.controls['currentPass'].value })
+      .subscribe(response => {
+        if(response.success) {
+          this.msgs.push({
+            severity: 'success',
+            summary: 'Password Updated',
+            detail: ''
+          });
+        }
+        else if(!response.passCheck) {
+          this.msgs.push({
+            severity: 'warn',
+            summary: 'Wrong Password',
+            detail: 'You cant change the users password'
+          });
+        }
+        else if(response.passCheck && response.error) {
+          this.msgs.push({
+            severity: 'warn',
+            summary: 'Error occured',
+            detail: 'Password could not be changed'
+          });
+        }
+      });
+
+    }
 
   }
 
