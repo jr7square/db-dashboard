@@ -27,9 +27,10 @@ export class ReviewsService {
       });
   }
 
-  newReview(review: Review): Observable<any> {
+  newReview(review): Observable<any> {
+    console.log(review);
     const newReviewUrl = `${this.url}/new`;
-    return this.http.post(newReviewUrl, review.encode(), this.headers)
+    return this.http.post(newReviewUrl, review, this.headers)
       .map(response => response.json());
   }
 

@@ -7,12 +7,16 @@ export class Review {
   private _comment: string;
   private _date: Date;
 
-  constructor(tripId: number, hostEmail: string, rating: number, comment: string, date: string) {
+  constructor(tripId?: number, hostEmail?: string, rating?: number, comment?: string, date?: string) {
     this._tripId = tripId
     this._hostEmail = hostEmail;
     this._rating = rating;
     this._comment = comment;
     this._date = new Date(date);
+  }
+
+  get tripId(): number {
+    return this._tripId;
   }
 
   get hostEmail(): string {
