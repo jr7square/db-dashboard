@@ -43,7 +43,8 @@ export class ProfileComponent implements OnInit {
   }
 
   submitEmail() {
-    if(this.changeEmailForm.status == 'VALID'){
+    if(this.changeEmailForm.status == 'VALID' &&
+    this.changeEmailForm.controls['newEmail'].value == this.changeEmailForm.controls['confirmNewEmail'].value){
       this.userService.updateUserEmail({
         email: this.user.email,
         newEmail: this.changeEmailForm.controls['newEmail'].value,
@@ -76,7 +77,8 @@ export class ProfileComponent implements OnInit {
 
   submitPassword() {
     console.log('executing submitting password')
-    if(this.changePasswordForm.status == 'VALID') {
+    if(this.changePasswordForm.status == 'VALID' &&
+      this.changePasswordForm.controls['newPass'].value == this.changePasswordForm.controls['confirmNewPass'].value) {
       this.userService.updateUserPassword({
         email: this.user.email,
         newPassword: this.changePasswordForm.controls['newPass'].value,
